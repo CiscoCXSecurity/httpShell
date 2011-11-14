@@ -1,0 +1,46 @@
+NAME:
+		httpShell - obfuscated reverse shell that looks like HTTP 
+
+DESCRIPTION
+		This is an obfuscated client/server reverse shell. 
+
+		If running as client, this application will act like an HTTP client (web browser),
+		making HTTP requests to the server. These requests will be encoded using the dictionary
+		files specified by the user. These requests will contain the results of the bash commands
+		send in the HTTP responses.
+
+		If running as the server, this application will act like an HTTP server, answering HTTP requests
+		sent by the client or by actual web browsers. The HTTP responses will bash commands encoded
+		into the dictionary file specified by the user.
+
+		--port
+				Port for the server to listen on, or port for the client to connect on
+
+		--host
+				address or domain name of the server (ony used by client)
+
+		--delay
+				amount of time to wait between http request (only used by client)
+
+		--password
+				data is aes192 encrypted on the wire. this is the shared secret
+
+		--dict
+				encoding dictionary file to be used (file with line deliniated words....).
+				This will be used for both client and server if the next two aren't specified
+
+		--clientdict
+				encoding dictionary file to be used by client(file with line deliniated words....).
+				you should probably build a dictionary that looks like something a browser would send
+
+		--serverdict
+				encoding dictionary file to be used by server(file with line deliniated words....).
+				you should probably build a dictionary that looks like something a web server would send
+
+AUTHOR
+		Written by Ben Toews (mastahyeti)
+
+COPYRIGHT
+		Copyright © 2011 Neohapsis Inc. License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+		This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+
