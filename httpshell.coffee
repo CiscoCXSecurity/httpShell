@@ -1,6 +1,6 @@
 http = require 'http'
 {spawn} = require 'child_process'
-{transcoder} = require './transcoder'
+{transcoder} = require './includes/transcoder'
 fs = require 'fs'
 
 #Help Message / Description...
