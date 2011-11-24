@@ -5,6 +5,8 @@ program = require './includes/commander.js'
 #Default Options
 client_dict = ['hello','world']
 server_dict = ['hello','world']
+client_template = '##$$##'
+server_template = '##$$##'
 port = 80
 host = "127.0.0.1"
 delay = 1000 #time between connections
@@ -33,10 +35,13 @@ printconfig = ->
         console.log "delay            : #{delay}"
         console.log "password         : #{password}"
         console.log "client dictionary: #{client_dict}"
-        console.log "server dictionary: #{server_dict}\n"
+        console.log "server dictionary: #{server_dict}"
+        console.log "client template  : \n#{client_template}"
+        console.log "server template  : \n#{server_template}\n"
 
 parseconfig = =>
         #Should we shut up?
+        #console.log program
         if program.quiet?
                 console.log = (string) ->
                         return
@@ -56,11 +61,15 @@ parseconfig = =>
         #Parse the client dictionary file argument
         if program.clientdict?
                 client_dict = readbyline program.clientdict
-
         #Parse the server dictionary file argument
         if program.serverdict?
                 server_dict = readbyline program.serverdict
-
+        #Read the client template file
+        if program.clienttemplate?
+                client_template = fs.readFileSync program.clienttemplate, 'utf8'
+        #Read the server template file
+        if program.servertemplate?
+                server_template = fs.readFileSync program.servertemplate, 'utf8'
 
 #Help Message / Description...
 helpme = \
@@ -90,14 +99,16 @@ helpme = \
 #Setup the options parsing
 program
   .version('0.0.2')
-  .option('-h --host [address]',"Server IP address or domain name [#{host}](Client/Server)",host)
-  .option('-p --port [port]',"Server listening port [#{port}] (Client/Server)",port)
-  .option('-d --delay [delay-ms]',"Miliseconds to delay between requests [#{delay}](Client only)",delay)
-  .option('-s --secret [shared]',"Shared secret to use for aes192 encryption [#{password}](Client/Server)",password)
-  .option('-a --dict <filename>','Path to the dictionary file to use for both client and server (Client/Server)')
-  .option('-b --clientdict <filename>','Path to the dictionary to use for client communication (Client/Server)')
-  .option('-c --serverdict <filename>','Path to the dictionary to use for server communication (Client/Server)')
-  .option('-q --quiet','Run quietly. (Client only)')
+  .option('-a --host [address]',"Server IP address or domain name [#{host}](Client/Server)",host)
+  .option('-b --port [port]',"Server listening port [#{port}] (Client/Server)",port)
+  .option('-c --delay [delay-ms]',"Miliseconds to delay between requests [#{delay}](Client only)",delay)
+  .option('-e --secret [shared]',"Shared secret to use for aes192 encryption [#{password}](Client/Server)",password)
+  .option('-f --dict <filename>','Path to the dictionary file to use for both client and server (Client/Server)')
+  .option('-g --clientdict <filename>','Path to the dictionary to use for client communication (Client/Server)')
+  .option('-h --serverdict <filename>','Path to the dictionary to use for server communication (Client/Server)')
+  .option('-i --clienttemplate <filename>','Path to the template file to use for client communication (Client/Server)')
+  .option('-k --servertemplate <filename>','Path to the template file to use for server communication (Client/Server)')
+  .option('-l --quiet','Run quietly. (Client only)')
 
 program
   .command('server')
@@ -105,7 +116,7 @@ program
   .action =>
         parseconfig()
         printconfig()
-        server host,port,delay,password,client_dict,server_dict
+        server host,port,delay,password,client_dict,server_dict,client_template,server_template
 
 program
   .command('client')
@@ -113,7 +124,7 @@ program
   .action =>
         parseconfig()
         printconfig()
-        client host,port,delay,password,client_dict,server_dict
+        client host,port,delay,password,client_dict,server_dict,client_template,server_template
 
 program.on '--help', ->
 	console.log helpme

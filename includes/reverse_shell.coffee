@@ -3,11 +3,11 @@ http = require 'http'
 {transcoder} = require './transcoder'
 
 class exports.server
-        constructor: (@host,@port,@delay,@password,@client_dict,@server_dict)->
+        constructor: (@host,@port,@delay,@password,@client_dict,@server_dict,@client_template,@server_template)->
                 console.log "Running as server\n"
                 #setup transcoders
-                @ct = new transcoder @client_dict, @password
-                @st = new transcoder @server_dict, @password
+                @ct = new transcoder @client_dict, @password, @client_template
+                @st = new transcoder @server_dict, @password, @client_template
 
                 @to_client = ''
 
@@ -46,11 +46,11 @@ class exports.server
 
 
 class exports.client
-        constructor: (@host,@port,@delay,@password,@client_dict,@server_dict)->
+        constructor: (@host,@port,@delay,@password,@client_dict,@server_dict,@client_template,@server_template)->
                 console.log "Running as client\n"
                 #setup transcoders
-                @ct = new transcoder @client_dict, @password
-                @st = new transcoder @server_dict, @password
+                @ct = new transcoder @client_dict, @password, @client_template
+                @st = new transcoder @server_dict, @password, @client_template
 
                 @to_return = ""
                 #Spawn a shell as a subprocess

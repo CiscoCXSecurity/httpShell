@@ -8,7 +8,7 @@ of integers of base x and then build an output string from the
 dictionary elements corresponding to these indexes. 
 '''
 class exports.transcoder
-	constructor: (@dict,@password) ->
+	constructor: (@dict,@password,@template) ->
 		#base of the input string. We assume UTF8 for now. 
 		@stringbase = 256
 		#Output base will be determined by num of elts in dict
@@ -18,11 +18,14 @@ class exports.transcoder
 		
 	encode: (string) ->
 		#encode the string
-		@a2s(@string_to_basex(@encrypt(string)))
+		@templatize(@a2s(@string_to_basex(@encrypt(string))))
 	
 	decode: (string) ->
 		#decode the string
 		@decrypt(@basex_to_string(@s2a(string)))
+
+	templatize: (string) ->
+		@template.replace '##$$##',string
 
 	a2s: (array) ->
 		#Convert array of dict indexes to a string
