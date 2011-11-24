@@ -24,12 +24,12 @@ Communications between the client and server is encrypted AES192. This option sp
 ###-f --dict \<filename\>
 This application encodes traffic into the words specified in this dictionary files. There are seperate dictionaries used for data sent by the client and by the server. This option specifies a dictionary file to be used by both. This file is parsed, treating each line as a seperate dictionary element. It is advisable that different dictionaries be used by both client and server. It is necessary that both the client and server have the same dictionary options specified. This works as follows: A base is defined as the number of different strings in the dictionary (the number of lines). The strings to be sent by client or server are converted into arrays of integers of the base derived from the dictionary (the number of dictionary elements). These integers then correspond to the elements in the dictionary which are concatenated together. The following is an example:  
 
-Dictionary: \[hello,world\]
-Input String: 'A' = 0x41 = 0b1000001
-Input Base: 256 
-Output base: 2 (2 elements in the dictionary)
-Output Integer Array (base 2): 1,0,0,0,0,0,1
-Output String: 'world hello hello hello hello hello world'
+Dictionary: \[hello,world\]  
+Input String: 'A' = 0x41 = 0b1000001  
+Input Base: 256  
+Output base: 2 (2 elements in the dictionary)  
+Output Integer Array (base 2): 1,0,0,0,0,0,1  
+Output String: 'world hello hello hello hello hello world'  
 
 ###-g --clientdict \<filename\>
 Path to the dictionary to use for client communication. See above for a better description of what this does. This defaults to \[hello,world\]
