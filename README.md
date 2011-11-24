@@ -1,16 +1,14 @@
+##httpShell - obfuscated reverse shell that looks like HTTP
+**Usage: httpshell.coffee [options] [command]**
 
-##Usage: httpshell.coffee [options] [command]
-
-#Commands:
-
-##server 
+##Commands:
+**server** 
 Start a fake HTTP server. This is the end sending commands to the client.
     
-##client 
+**client** 
 Start a fake HTTP client. This is the end that receives and runs the command from the server.
 
-#Options:
-
+##Options:
 -h, --help                      output usage information
 -V, --version                   output the version number
 -a --host [address]             Server IP address or domain name [127.0.0.1](Client/Server)
@@ -24,10 +22,7 @@ Start a fake HTTP client. This is the end that receives and runs the command fro
 -j --servertemplate <filename>  Path to the template file to use for server communication (Client/Server)
 -k --quiet                      Run quietly. (Client only)
 
-#Name:
-##httpShell - obfuscated reverse shell that looks like HTTP
-
-#Description:
+##Description:
 This is an obfuscated client/server reverse shell. 
 
 If running as client, this application will act like an HTTP client (web browser),
@@ -39,9 +34,9 @@ If running as the server, this application will act like an HTTP server, answeri
 sent by the client or by actual web browsers. The HTTP responses will bash commands encoded
 into the dictionary file specified by the user.
 
-#Author:
-##Written by Ben Toews (mastahyeti)
+##Author:
+**Written by Ben Toews (mastahyeti)**
 
-#Copyright:
+##Copyright:
 Copyright © 2011 Neohapsis Inc. License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
