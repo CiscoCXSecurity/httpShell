@@ -107,8 +107,8 @@ program
   .option('-g --clientdict <filename>','Path to the dictionary to use for client communication (Client/Server)')
   .option('-h --serverdict <filename>','Path to the dictionary to use for server communication (Client/Server)')
   .option('-i --clienttemplate <filename>','Path to the template file to use for client communication (Client/Server)')
-  .option('-k --servertemplate <filename>','Path to the template file to use for server communication (Client/Server)')
-  .option('-l --quiet','Run quietly. (Client only)')
+  .option('-j --servertemplate <filename>','Path to the template file to use for server communication (Client/Server)')
+  .option('-k --quiet','Run quietly. (Client only)')
 
 program
   .command('server')
