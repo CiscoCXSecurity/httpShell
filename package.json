@@ -1,0 +1,11 @@
+{
+  "name": "httpShell",
+  "version": "0.1.0",
+  "bin": {
+    "httpshell": "./httpshell.coffee"
+  },
+  "dependencies": {
+    "coffee-script" : "~> 1.1.0",
+    "commander": "~> 0.4.0"
+  }
+}

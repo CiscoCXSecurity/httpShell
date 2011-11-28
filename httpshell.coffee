@@ -1,5 +1,5 @@
 fs = require 'fs'
-program = require './includes/commander.js'
+program = require 'commander'
 {client,server} = require './includes/reverse_shell'
 
 #Default Options
@@ -50,7 +50,7 @@ parseconfig = =>
         host     = program.host
         port     = program.port
         delay    = program.delay
-        password = program.secret 
+        password = program.secret
 
         #Parse the dictionary file argument
         if program.dict?
